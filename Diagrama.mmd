@@ -1,0 +1,23 @@
+classDiagram
+    class AplicacionBolsaValores {
+        -TargetAppInbound servicioDatos
+        +mostrarPanelDeControl() void
+    }
+    
+    class TargetAppInbound {
+        <<interface>>
+        +getDatosStockXML() string
+    }
+
+    class StockAdapter {
+        -BibliotecaAnalisisTerceros servicioExterno
+        +getDatosStockXML() string
+    }
+
+    class BibliotecaAnalisisTerceros {
+        +realizarAnalisisAvanzado(string datosJSON) string
+    }
+
+    AplicacionBolsaValores --> TargetAppInbound : Usa
+    StockAdapter ..|> TargetAppInbound : Implementa
+    StockAdapter --> BibliotecaAnalisisTerceros : Envuelve
